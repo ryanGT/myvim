@@ -11,7 +11,11 @@ filetype plugin indent on
 "filetype plugin indent on
 "syntax on
 
-set guifont=Courier:h18
+if has("gui_macvim")
+    set guifont=Courier:h18
+else
+    set guifont=FreeMono\ 14
+endif
 
 "Plugin 'tmhedberg/SimpylFold'
 let g:pymode = 0
@@ -77,27 +81,31 @@ hi PmenuSel ctermbg=white ctermfg=black
 set clipboard=unnamed
 set autochdir
 let g:bookmark_auto_close = 1
-py3 import py_vim_md_beamer
-function! Pyfunc()
-    py3 py_vim_md_beamer.myfunc()
-endfunction
-
-function BuildPres()
-    write
-    echo "building presentation"
-    py3 py_vim_md_beamer.build_pres()
-    echo "done"
-endfunction
-
-function OpenPres()
-    write
-    py3 py_vim_md_beamer.open_pres_skim()
-endfunction
-
-
-func! MenuCB(id, result)
-  echo "You chose item #".a:result
-endfunc
-
-nnoremap ]b :call BuildPres()<CR>
-nnoremap ]o :call OpenPres()<CR>
+"py3 import py_vim_md_beamer
+"function! Pyfunc()
+"    py3 py_vim_md_beamer.myfunc()
+"endfunction
+"
+"function BuildPres()
+"    write
+"    echo "building presentation"
+"    py3 py_vim_md_beamer.build_pres()
+"    echo "done"
+"endfunction
+"
+"function OpenPres()
+"    write
+"    py3 py_vim_md_beamer.open_pres_skim()
+"endfunction
+"
+"function! InsertCols()
+"    py3 py_vim_md_beamer.insert_cols()
+"endfunction
+"
+"
+"func! MenuCB(id, result)
+"  echo "You chose item #".a:result
+"endfunc
+"
+"nnoremap ]b :call BuildPres()<CR>
+"nnoremap ]o :call OpenPres()<CR>
